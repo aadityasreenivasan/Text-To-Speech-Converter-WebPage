@@ -6,7 +6,7 @@ let synth = speechSynthesis,
 isSpeaking = true;
 
 voices();
-
+/*function voices to select user's choice of voice */
 function voices(){
     for(let voice of synth.getVoices()){
         let selected = voice.name === "Google US English" ? "selected" : "";
@@ -15,6 +15,7 @@ function voices(){
     }
 }
 
+/*eventlistener for the speechsynthesis Web API to speak */
 synth.addEventListener("voiceschanged", voices);
 
 function textToSpeech(text){
@@ -27,6 +28,7 @@ function textToSpeech(text){
     synth.speak(utterance);
 }
 
+/*eventlistener for button to convert speech to text*/
 speechBtn.addEventListener("click", e =>{
     e.preventDefault();
     if(textarea.value !== ""){
