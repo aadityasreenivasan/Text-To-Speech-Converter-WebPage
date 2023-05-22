@@ -18,6 +18,7 @@ function voices(){
 /*eventlistener for the speechsynthesis Web API to speak */
 synth.addEventListener("voiceschanged", voices);
 
+/*function to convert provided text into speech */
 function textToSpeech(text){
     let utterance = new SpeechSynthesisUtterance(text);
     for(let voice of synth.getVoices()){
@@ -28,13 +29,14 @@ function textToSpeech(text){
     synth.speak(utterance);
 }
 
-/*eventlistener for button to convert speech to text*/
+/*eventlistener for button to convert text to speech*/
 speechBtn.addEventListener("click", e =>{
     e.preventDefault();
     if(textarea.value !== ""){
         if(!synth.speaking){
             textToSpeech(textarea.value);
         }
+        /*Pause and Resume functionality for text greater than 80 Characters */
         if(textarea.value.length > 80){
             setInterval(()=>{
                 if(!synth.speaking && !isSpeaking){
